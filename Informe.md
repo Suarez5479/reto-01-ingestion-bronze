@@ -1,57 +1,46 @@
-#  Reto 1 –
+#  Reto 1
 
-**Diplomado Gestión de Datos 2025-2026**
-
-##  ¿Qué hice en este reto?
-
-En este reto desarrollé un script en Python llamado `ingestor.py` que simula una **etapa Bronze de un pipeline de datos**.  
-La idea principal fue procesar archivos que llegan desde una carpeta de entrada (`landing/`), sabiendo que algunos pueden venir vacíos o dañados, y clasificarlos sin que el proceso se detenga por errores.
-
-El objetivo fue automatizar la limpieza inicial de los datos y dejarlos listos para las siguientes etapas del pipeline.
+**Diplomado Gestión de Datos 2026**
 
 ---
 
-##  ¿Cómo funciona el script?
+##  Contexto
 
-El script realiza los siguientes pasos:
+En este reto se simula una etapa de ingestión de datos dentro de un pipeline.  
+Se cuenta con una carpeta llamada `landing/` donde llegan archivos desde diferentes fuentes, pero debido a problemas en la transmisión algunos de estos archivos pueden llegar vacíos o corruptos.
 
-1. **Recorre la carpeta `landing/`**
-   - Utiliza la librería `pathlib` para leer todos los archivos de forma segura.
-
-2. **Valida cada archivo**
-   - Si el archivo tiene contenido (más de 0 bytes), se considera válido.
-   - Si el archivo está vacío, se considera corrupto o inválido.
-
-3. **Clasifica los archivos**
-   - Los archivos válidos se mueven a la carpeta `bronze/`.
-   - Los archivos vacíos se mueven a la carpeta `bad_data/`.
-
-4. **Muestra mensajes en consola**
-   - Por cada archivo procesado, el script imprime qué archivo se movió y a qué carpeta, lo que permite hacer seguimiento del proceso.
-
-5. **Manejo de errores**
-   - Se implementó `try/except` para asegurar que, si ocurre un error con un archivo, el script continúe procesando los demás.
-
-6. **Resultado final**
-   - Al finalizar la ejecución, la carpeta `landing/` queda vacía, cumpliendo con el propósito del reto.
+El objetivo es procesar estos archivos automáticamente, separar los datos útiles de los inválidos y evitar que el proceso se detenga por errores individuales.
 
 ---
 
-##  Tecnologías y librerías usadas
+##  Objetivo del Reto
+
+Desarrollar un script en Python que:
+
+- Recorra todos los archivos dentro de la carpeta `landing/`
+- Clasifique los archivos según su contenido
+- Mueva los archivos válidos a `bronze/`
+- Mueva los archivos vacíos a `bad_data/`
+- Registre en consola qué ocurrió con cada archivo
+- No se detenga si ocurre un error con algún archivo
+
+---
+
+##  Tecnologías utilizadas
 
 - Python 3
-- `pathlib` para el manejo de rutas y archivos
-- `shutil` para mover archivos entre carpetas
-- Manejo de excepciones con `try/except`
+- `pathlib` para el manejo de rutas
+- `shutil` para mover archivos dentro del sistema
 
 ---
 
 ##  Estructura del proyecto
 
 ```text
-.
+reto-01-ingestion-bronze/
 ├── ingestor.py
-├── landing/
 ├── bronze/
 ├── bad_data/
+├── landing/
 └── README.md
+
